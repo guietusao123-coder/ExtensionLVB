@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "Extensão TS Community",
+  "short_name": "TS Community",
+  "version": "5.1",
+  "description": "Extensão premium com validação de licença, modo plano e automação inteligente.",
+  "permissions": ["storage", "activeTab", "scripting", "tabs", "sidePanel", "cookies", "webRequest"],
+  "host_permissions": [
+    "https://*.lovable.dev/*",
+    "https://api.lovable.dev/*",
+    "https://lovable.dev/*",
+    "https://lovable-api.com/*",
+    "https://wogunbzijppmeuleitjq.supabase.co/*"
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {},
+  "side_panel": { "default_path": "sidepanel.html" },
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [{
+    "matches": [
+      "https://*.lovable.dev/*",
+      "https://lovable.dev/*",
+      "https://api.lovable.dev/*"
+    ],
+    "js": ["jszip.min.js", "content.js"],
+    "run_at": "document_idle"
+  }],
+  "web_accessible_resources": [
+    {
+      "resources": ["pageHook.js"],
+      "matches": ["https://*.lovable.dev/*", "https://lovable.dev/*"]
+    },
+    {
+      "resources": [
+        "sidepanel.html",
+        "sidepanel.js",
+        "jszip.min.js",
+        "icons/*"
+      ],
+      "matches": ["https://*.lovable.dev/*", "https://lovable.dev/*"]
+    }
+  ]
+}
